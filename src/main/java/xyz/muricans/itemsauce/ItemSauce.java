@@ -9,19 +9,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import xyz.muricans.itemsauce.config.ItemSauceConfig;
 
-import java.nio.file.Path;
 import java.util.List;
 
 public class ItemSauce implements ClientModInitializer {
 	public static final String MOD_ID = "itemsauce";
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
-
-	public static ItemSauceConfig config;
+	public static final ItemSauceConfig CONFIG = ItemSauceConfig.initialize(FabricLoader.getInstance().getConfigDir().resolve("itemsauce.toml"));
 
 	@Override
 	public void onInitializeClient() {
-		Path configFile = FabricLoader.getInstance().getConfigDir().resolve("itemsauce.toml");
-		config = ItemSauceConfig.initialize(configFile);
 		LOGGER.info("[itemsauce] Initialized");
 	}
 

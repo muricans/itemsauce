@@ -2,7 +2,9 @@ package xyz.muricans.itemsauce;
 
 import net.minecraft.util.Formatting;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public enum ItemSauceRarity {
     LEGENDARY()
@@ -14,11 +16,16 @@ public enum ItemSauceRarity {
     private final String tooltipName;
     private final Formatting color;
     private final List<String> items;
+    private static final Map<String, ItemSauceRarity> RARITY_ITEMS = new HashMap<>();
 
     ItemSauceRarity() {
         this.tooltipName = this.name().toLowerCase().substring(0, 1).toUpperCase() + this.name().toLowerCase().substring(1);
-        this.color = ItemSauce.config.get(this).getColor();
-        this.items = ItemSauce.config.get(this).getItems();
+        this.color = ItemSauce.CONFIG.get(this).getColor();
+        this.items = ItemSauce.CONFIG.get(this).getItems();
+    }
+
+    public static void populate(String id, ItemSauceRarity rarity) {
+        RARITY_ITEMS.put(id, rarity);
     }
 
     public static ItemSauceRarity of(String id) {
@@ -28,6 +35,10 @@ public enum ItemSauceRarity {
         else if(UNCOMMON.getItems().stream().anyMatch(id::contains)) return UNCOMMON;
         else if(COMMON.getItems().stream().anyMatch(id::contains)) return COMMON;
         return null;
+    }
+
+    public static ItemSauceRarity get(String id) {
+        return RARITY_ITEMS.get(id);
     }
 
     public Formatting getColor() {

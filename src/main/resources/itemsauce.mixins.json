@@ -1,11 +1,12 @@
 {
-	"required": true,
-	"package": "xyz.muricans.itemsauce.mixin",
-	"compatibilityLevel": "JAVA_21",
-	"injectors": {
-		"defaultRequire": 1
-	},
-	"client": [
-		"ItemStackMixin"
-	]
+  "required": true,
+  "package": "xyz.muricans.itemsauce.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "client": [
+    "ItemStackMixin",
+    "RegistryMixin"
+  ]
 }

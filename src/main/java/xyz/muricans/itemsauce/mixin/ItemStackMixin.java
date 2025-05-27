@@ -25,11 +25,7 @@ public class ItemStackMixin {
 		ItemStack self = (ItemStack) (Object) this;
 		if(self == null || player == null) return;
 		String id = self.getRegistryEntry().getIdAsString();
-		ItemSauceRarity rarity = ItemSauceRarity.of(id);
+		ItemSauceRarity rarity = ItemSauceRarity.get(id);
 		if(rarity != null) ItemSauce.addText(list, rarity.getTooltipName(), rarity.getColor());
-		else if(ItemSauce.config.usesBakedInRarity()) {
-			rarity = ItemSauceRarity.valueOf(self.getRarity().name());
-			if(rarity != null) ItemSauce.addText(list, rarity.getTooltipName(), rarity.getColor());
-		}
 	}
 }
