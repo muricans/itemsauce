@@ -8,8 +8,8 @@
 		"muricans"
 	],
 	"contact": {
-		"homepage": "https://github.muricans.xyz",
-		"sources": "https://github.muricans.xyz"
+		"homepage": "https://modrinth.com/mod/itemsauce",
+		"sources": "https://github.com/muricans/itemsauce"
 	},
 	"license": "MIT",
 	"icon": "assets/itemsauce/icon.png",
