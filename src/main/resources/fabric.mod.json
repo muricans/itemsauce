@@ -1,0 +1,31 @@
+{
+	"schemaVersion": 1,
+	"id": "itemsauce",
+	"version": "${version}",
+	"name": "ItemSauce",
+	"description": "Adds rarity to item tooltips... that's it.",
+	"authors": [
+		"muricans"
+	],
+	"contact": {
+		"homepage": "https://github.muricans.xyz",
+		"sources": "https://github.muricans.xyz"
+	},
+	"license": "MIT",
+	"icon": "assets/itemsauce/icon.png",
+	"environment": "client",
+	"entrypoints": {
+		"client": [
+			"xyz.muricans.itemsauce.ItemSauce"
+		]
+	},
+	"mixins": [
+		"itemsauce.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.16.14",
+		"minecraft": "~1.21.1",
+		"java": ">=21",
+		"fabric-api": "*"
+	}
+}
