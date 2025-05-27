@@ -65,7 +65,7 @@ public class ItemSauceConfig {
     @SuppressWarnings("unchecked")
     public ItemSauceConfigType get(String name) {
         Map<String, Object> configValue = this.getRaw(name);
-        return configValue == null ? null : new ItemSauceConfigType(Formatting.valueOf((String) configValue.get("color")), (List<String>) configValue.get("items"));
+        return configValue == null ? null : new ItemSauceConfigType(Formatting.valueOf(((String) configValue.get("color")).toUpperCase()), (List<String>) configValue.get("items"));
     }
 
     public ItemSauceConfigType get(ItemSauceRarity rarity) {
