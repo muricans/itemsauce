@@ -27,8 +27,12 @@ public interface RegistryMixin {
         ItemSauceRarity rarity = ItemSauceRarity.of(id);
         if(rarity != null) ItemSauceRarity.populate(id, rarity);
         else if(ItemSauce.CONFIG.usesBakedInRarity()) {
-            rarity = ItemSauceRarity.valueOf(stack.getRarity().name());
-            ItemSauceRarity.populate(id, rarity);
+            try {
+                rarity = ItemSauceRarity.valueOf(stack.getRarity().name());
+                ItemSauceRarity.populate(id, rarity);
+            } catch (IllegalArgumentException e) {
+                ItemSauce.LOGGER.error("[itemsauce] Invalid rarity type", e);
+            }
         }
     }
 }

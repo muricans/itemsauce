@@ -28,7 +28,7 @@ public class ItemSauceConfig {
         try {
             new TomlWriter().write(config, path.toFile());
         } catch(IOException e) {
-            ItemSauce.LOGGER.error(e.getMessage(), e);
+            ItemSauce.LOGGER.error("[itemsauce] There was an error generating the config", e);
         }
         return config;
     }
@@ -65,10 +65,27 @@ public class ItemSauceConfig {
     @SuppressWarnings("unchecked")
     public ItemSauceConfigType get(String name) {
         Map<String, Object> configValue = this.getRaw(name);
-        return configValue == null ? null : new ItemSauceConfigType(Formatting.valueOf(((String) configValue.get("color")).toUpperCase()), (List<String>) configValue.get("items"));
+        if(configValue == null) return null;
+        Formatting color = Formatting.AQUA;
+        try {
+            color = Formatting.valueOf(((String) configValue.get("color")).toUpperCase());
+        } catch (IllegalArgumentException e) {
+            ItemSauce.LOGGER.error("[itemsauce] Invalid color type in config", e);
+        }
+        return new ItemSauceConfigType(color, (List<String>) configValue.get("items"));
     }
 
     public ItemSauceConfigType get(ItemSauceRarity rarity) {
         return this.get(rarity.name().toLowerCase());
+    }
+
+    public record ItemSauceConfigType(Formatting color, List<String> items) {
+        public List<String> getItems() {
+            return items;
+        }
+
+        public Formatting getColor() {
+            return color;
+        }
     }
 }

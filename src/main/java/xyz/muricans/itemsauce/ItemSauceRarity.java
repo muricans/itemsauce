@@ -19,7 +19,7 @@ public enum ItemSauceRarity {
     private static final Map<String, ItemSauceRarity> RARITY_ITEMS = new HashMap<>();
 
     ItemSauceRarity() {
-        this.tooltipName = this.name().toLowerCase().substring(0, 1).toUpperCase() + this.name().toLowerCase().substring(1);
+        this.tooltipName = this.name().charAt(0) + this.name().toLowerCase().substring(1);
         this.color = ItemSauce.CONFIG.get(this).getColor();
         this.items = ItemSauce.CONFIG.get(this).getItems();
     }
